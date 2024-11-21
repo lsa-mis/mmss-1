@@ -46,10 +46,8 @@ RSpec.describe ApplicantDetail, type: :model do
   end
 
   context 'all required fields are present' do
-    subject do
-      FactoryBot.create(:user)
-      FactoryBot.create(:applicant_detail)
-    end
+    let!(:user) { create(:user) }
+    subject { create(:applicant_detail, user: user) }
 
     it 'is valid' do
       expect(subject).to be_valid
@@ -57,24 +55,23 @@ RSpec.describe ApplicantDetail, type: :model do
   end
 
   context 'without first name' do
-    let!(:user) { FactoryBot.create(:user) }
+    let!(:user) { create(:user) }
 
     it 'is not valid' do
       expect do
-        FactoryBot.create(:applicant_detail, firstname: '',
-                                             user:)
+        create(:applicant_detail, firstname: '', user: user)
       end.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Firstname can't be blank")
     end
   end
 
   context 'prevent to create two ApplicantDetail records for a user (test user uniqueness)' do
-    let!(:user) { FactoryBot.create(:user) }
+    let!(:user) { create(:user) }
+    
     it 'is valid' do
-      appdet1 = FactoryBot.create(:applicant_detail, user:)
+      appdet1 = create(:applicant_detail, user: user)
       expect(appdet1).to be_valid
       expect do
-        FactoryBot.create(:applicant_detail,
-                          user:)
+        create(:applicant_detail, user: user)
       end.to raise_error(ActiveRecord::RecordInvalid, 'Validation failed: User has already been taken')
     end
   end
