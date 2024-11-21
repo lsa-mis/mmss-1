@@ -38,37 +38,22 @@
 #
 FactoryBot.define do
   factory :applicant_detail do
-    association :user
-    demographic { Demographic.first || association(:demographic) }
-    firstname { Faker::Name.first_name }
-    middlename { Faker::Name.middle_name }
-    lastname { Faker::Name.last_name }
-    gender { Gender.first&.id || association(:gender) }
-    birthdate { Faker::Date.birthday(min_age: 15, max_age: 18) }
-    diet_restrictions { 'peanuts' }
-    shirt_size { 'Large' }
-    address1 { Faker::Address.street_address }
-    address2 { Faker::Address.secondary_address }
-    city { Faker::Address.city }
-    state { Faker::Address.state_abbr }
-    postalcode { Faker::Address.zip_code }
-    country { 'US' }
-    phone { '123-333-5555' }
-    parentname { Faker::Name.name }
-    parentaddress1 { Faker::Address.street_address }
-    parentaddress2 { Faker::Address.secondary_address }
-    parentcity { Faker::Address.city }
-    parentstate { Faker::Address.state_abbr }
-    parentzip { Faker::Address.zip_code }
-    parentcountry { 'US' }
-    parentphone { '123-444-5555' }
-    parentworkphone { '123-666-5555' }
-    parentemail { Faker::Internet.email }
-
-    after(:build) do |applicant_detail|
-      if applicant_detail.demographic&.name&.downcase == 'other'
-        applicant_detail.demographic_other = 'Other Demographic Details'
-      end
-    end
+    user
+    firstname { "John" }
+    lastname { "Doe" }
+    birthdate { Date.today - 16.years }
+    us_citizen { false }
+    address1 { "123 Main St" }
+    city { "Ann Arbor" }
+    state { "MI" }
+    postalcode { "48109" }
+    country { "USA" }
+    phone { "123-456-7890" }
+    parentname { "Jane Doe" }
+    parentphone { "123-456-7890" }
+    gender { 'Female' }
+    shirt_size { 'M' }
+    demographic_id { create(:demographic).id }
+    parentemail { 'parent@example.com' }
   end
 end
