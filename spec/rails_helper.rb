@@ -68,6 +68,8 @@ RSpec.configure do |config|
 
   config.use_transactional_fixtures = true
 
+  config.include FactoryBot::Syntax::Methods
+
 end
 
 # Shoulda::Matchers.configure do |config|
