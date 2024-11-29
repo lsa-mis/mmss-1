@@ -123,6 +123,12 @@ GEM
       sort_alphabetical (~> 1.1)
     crass (1.0.6)
     csv (3.3.0)
+    database_cleaner (2.1.0)
+      database_cleaner-active_record (>= 2, < 3)
+    database_cleaner-active_record (2.2.0)
+      activerecord (>= 5.a)
+      database_cleaner-core (~> 2.0.0)
+    database_cleaner-core (2.0.1)
     declarative (0.0.20)
     devise (4.8.1)
       bcrypt (~> 3.0)
@@ -401,6 +407,8 @@ GEM
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
     semantic_range (3.0.0)
+    shoulda-matchers (6.4.0)
+      activesupport (>= 5.2.0)
     signet (0.17.0)
       addressable (~> 2.8)
       faraday (>= 0.17.5, < 3.a)
@@ -494,6 +502,7 @@ DEPENDENCIES
   capistrano-rails (~> 1.6, >= 1.6.1)
   capybara (~> 3.35, >= 3.35.3)
   country_select (~> 6.0)
+  database_cleaner
   devise (~> 4.8)
   dump (~> 1.2, >= 1.2.2)
   factory_bot_rails (~> 6.2)
@@ -514,6 +523,8 @@ DEPENDENCIES
   rspec-rails (~> 5.0, >= 5.0.2)
   sass-rails (~> 6.0)
   sd_notify
+  selenium-webdriver
+  shoulda-matchers
   skylight
   spring (~> 3.0)
   standard
