@@ -5,7 +5,7 @@ ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 
 # Prevent database truncation if the environment is running in production
-abort("The Rails environment is running in production mode!") if Rails.env.production?
+abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
 
 # Add additional requires below this line
@@ -60,6 +60,15 @@ RSpec.configure do |config|
 
   # Filter lines from Rails gems in backtraces
   config.filter_rails_from_backtrace!
+
+  # Add FactoryBot lint to catch factory definition issues
+  config.before(:suite) do
+    FactoryBot.lint
+  end
+
+  # Add more verbose output and timing tracking
+  config.profile_examples = 10
+  config.default_formatter = 'doc' if config.files_to_run.one?
 end
 
 # Configure Shoulda Matchers
