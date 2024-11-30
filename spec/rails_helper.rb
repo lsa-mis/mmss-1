@@ -4,7 +4,7 @@ require 'database_cleaner'
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 
-# Prevent database truncation if the environment is production
+# Prevent database truncation if the environment is running in production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
 
@@ -69,3 +69,6 @@ Shoulda::Matchers.configure do |config|
     with.library :rails
   end
 end
+
+# Add this line after the other requires
+Dir[Rails.root.join('spec', 'support', '**', '*.rb')].sort.each { |f| require f }
