@@ -18,6 +18,12 @@
 #
 FactoryBot.define do
   factory :faculty do
-    
+    email { Faker::Internet.email }
+    password { Faker::Internet.password(min_length: 10) }
+
+    # Add a course to pass validation
+    after(:build) do |faculty|
+      create(:course, faculty_uniqname: faculty.email.split('@').first)
+    end
   end
 end

@@ -14,9 +14,10 @@
 #
 FactoryBot.define do
   factory :course do
-    camp_occurrence { nil }
-    title { "MyString" }
-    available_spaces { 1 }
-    status { "MyString" }
+    association :camp_occurrence
+    title { Faker::Educator.course_name }
+    available_spaces { 20 }
+    status { "Open" }
+    faculty_uniqname { Faker::Internet.username }
   end
 end

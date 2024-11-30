@@ -22,18 +22,19 @@
 #
 FactoryBot.define do
   factory :payment do
-    transaction_type { "MyString" }
-    transaction_status { "MyString" }
-    transaction_id { "MyString" }
-    total_amount { "MyString" }
-    transaction_date { "MyString" }
-    account_type { "MyString" }
-    result_code { "MyString" }
-    result_message { "MyString" }
-    user_accoun { "MyString" }
-    payer_identity { "MyString" }
-    timestamp { "MyString" }
-    transaction_hash { "MyString" }
-    user { nil }
+    association :user
+    transaction_type { "Purchase" }
+    transaction_status { "Completed" }
+    transaction_id { SecureRandom.hex(10) }
+    total_amount { "100.00" }
+    transaction_date { Date.current }
+    account_type { "Credit" }
+    result_code { "SUCCESS" }
+    result_message { "Payment processed successfully" }
+    user_account { "test_account" }
+    payer_identity { Faker::Internet.username }
+    timestamp { Time.current }
+    transaction_hash { SecureRandom.hex(16) }
+    camp_year { Date.current.year }
   end
 end

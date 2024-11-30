@@ -22,13 +22,14 @@
 #
 FactoryBot.define do
   factory :travel do
-    enrollment { nil }
-    direction { "MyString" }
-    transport_needed { "MyString" }
-    date { "2019-09-24 16:54:31" }
-    mode { "MyString" }
-    carrier { "MyString" }
-    route_num { "MyString" }
-    note { "MyText" }
+    association :enrollment
+    arrival_transport { "Plane" }
+    arrival_carrier { "Delta" }
+    arrival_route_num { "DL123" }
+    arrival_date { Date.current + 1.month }
+    depart_transport { "Plane" }
+    depart_carrier { "United" }
+    depart_route_num { "UA456" }
+    depart_date { Date.current + 2.months }
   end
 end

@@ -10,7 +10,7 @@
 #
 FactoryBot.define do
   factory :rejection do
-    enrollment { nil }
-    reason { "MyText" }
+    association :enrollment
+    reason { Faker::Lorem.sentence }
   end
 end

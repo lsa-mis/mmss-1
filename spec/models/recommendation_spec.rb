@@ -25,5 +25,28 @@
 require 'rails_helper'
 
 RSpec.describe Recommendation, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'validations' do
+    subject { build(:recommendation) }
+
+    it { should validate_presence_of(:email) }
+    it { should validate_presence_of(:firstname) }
+    it { should validate_presence_of(:lastname) }
+    it { should validate_presence_of(:organization) }
+  end
+
+  describe 'methods' do
+    let(:recommendation) { build(:recommendation) }
+
+    it 'returns full name correctly' do
+      recommendation.firstname = 'John'
+      recommendation.lastname = 'Doe'
+      expect(recommendation.full_name).to eq('John Doe')
+    end
+
+    it 'returns display name correctly' do
+      recommendation.firstname = 'John'
+      recommendation.lastname = 'Doe'
+      expect(recommendation.display_name).to eq('Doe, John')
+    end
+  end
 end

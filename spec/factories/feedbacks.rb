@@ -11,6 +11,8 @@
 #
 FactoryBot.define do
   factory :feedback do
-    
+    association :user
+    genre { %w[bug suggestion other].sample }
+    message { Faker::Lorem.sentence }
   end
 end

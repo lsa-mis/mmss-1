@@ -32,27 +32,27 @@
 FactoryBot.define do
   factory :enrollment do
     association :user
-    # international { false }
+    
+    # Required fields
     high_school_name { Faker::University.name }
-    high_school_address1 { Faker::Address.street_address}
-    high_school_address2 { Faker::Address.secondary_address }
+    high_school_address1 { Faker::Address.street_address }
     high_school_city { Faker::Address.city }
-    high_school_state { Faker::Address.state_abbr }
-    # high_school_non_us { "MyString" }
-    high_school_postalcode { Faker::Address.zip_code }
     high_school_country { "US" }
     year_in_school { "Junior" }
-    anticipated_graduation_year { "2023" }
-    room_mate_request { Faker::Name.name}
-    personal_statement { Faker::Lorem.paragraph_by_chars(number: 100, supplemental: false)  }
-    # shirt_size { "MyString" }
-    # notes { "MyText" }
-    # application_status { "MyString" }
-    # offer_status { "MyString" }
-    # partner_program { "MyString" }
-    campyear { 2022 }
+    anticipated_graduation_year { (Date.current.year + 2).to_s }
+    personal_statement { Faker::Lorem.paragraph(sentence_count: 3) }
+    campyear { Date.current.year }
 
-    link_to_default_transcript = "#{Rails.root}/spec/files/test.pdf"
-    transcript { Rack::Test::UploadedFile.new link_to_default_transcript, "application/pdf" }
+    # Transient attributes to help with associations
+    transient do
+      session_registration_ids { CampOccurrence.pluck(:id) }
+      course_registration_ids { Course.pluck(:id) }
+    end
+
+    after(:build) do |enrollment, evaluator|
+      # Ensure session and course registrations
+      enrollment.session_registration_ids = evaluator.session_registration_ids
+      enrollment.course_registration_ids = evaluator.course_registration_ids
+    end
   end
 end

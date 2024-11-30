@@ -20,12 +20,15 @@
 #
 FactoryBot.define do
   factory :camp_configuration do
-    camp_year { 2019 }
-    application_open { "2019-07-17" }
-    application_close { "2019-07-17" }
-    priority { "2019-07-17" }
-    application_materials_due { "2019-07-17" }
-    camper_acceptance_due { "2019-07-17" }
+    sequence(:camp_year) { |n| Date.current.year + n }
+    application_open { Date.current - 2.months }
+    application_close { Date.current + 1.month }
+    priority { Date.current - 1.month }
+    application_materials_due { Date.current }
+    camper_acceptance_due { Date.current + 2.weeks }
     active { false }
+    offer_letter { "Congratulations on your acceptance!" }
+    reject_letter { "We regret to inform you..." }
+    waitlist_letter { "You are on the waitlist." }
   end
 end

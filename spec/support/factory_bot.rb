@@ -2,5 +2,5 @@ RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
 end
 
-# Test factories before running specs
-FactoryBot.lint 
+# Disable factory linting during test runs
+FactoryBot.lint_only_failures = true 

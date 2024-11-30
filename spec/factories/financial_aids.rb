@@ -14,11 +14,9 @@
 #
 FactoryBot.define do
   factory :financial_aid do
-    enrollment { nil }
-    amount_cents { 1 }
-    source { "MyString" }
-    awarded { false }
-    note { "MyText" }
-    status { "MyString" }
+    association :enrollment
+    amount_cents { 1000 }
+    source { "Scholarship" }
+    status { "pending" }
   end
 end
