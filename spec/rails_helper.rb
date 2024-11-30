@@ -63,7 +63,7 @@ RSpec.configure do |config|
 
   # Add FactoryBot lint to catch factory definition issues
   config.before(:suite) do
-    FactoryBot.lint
+    FactoryBot.lint(traits: true, strategy: :build)
   end
 
   # Add more verbose output and timing tracking

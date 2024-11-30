@@ -25,5 +25,10 @@ FactoryBot.define do
     after(:build) do |faculty|
       create(:course, faculty_uniqname: faculty.email.split('@').first)
     end
+
+    # Optional: If you want to create an associated camp configuration
+    after(:build) do |faculty|
+      create(:camp_configuration)
+    end
   end
 end

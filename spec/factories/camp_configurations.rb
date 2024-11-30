@@ -30,5 +30,6 @@ FactoryBot.define do
     offer_letter { "Congratulations on your acceptance!" }
     reject_letter { "We regret to inform you..." }
     waitlist_letter { "You are on the waitlist." }
+    application_fee_cents { 10000 }
   end
 end
