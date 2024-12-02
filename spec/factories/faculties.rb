@@ -27,7 +27,7 @@ FactoryBot.define do
     end
 
     # Optional: If you want to create an associated camp configuration
-    after(:build) do |faculty|
+    after(:build) do
       create(:camp_configuration)
     end
   end
